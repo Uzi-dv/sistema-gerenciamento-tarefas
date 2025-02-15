@@ -1,24 +1,20 @@
-Sistema de Gerenciamento de Tarefas
+# Sistema de Gerenciamento de Tarefas
 
-📌 Sobre o Projeto
+## 📌 Sobre o Projeto
 
-O Sistema de Gerenciamento de Tarefas é uma aplicação web que permite aos usuários criar, organizar e gerenciar tarefas de forma eficiente. Com funcionalidades como cadastro de usuários, filtragem de tarefas e notificações, o sistema visa aumentar a produtividade e facilitar a organização diária.
+Este projeto é um sistema de gerenciamento de tarefas desenvolvido para ajudar os usuários a organizar suas atividades diárias de forma eficiente. O sistema permite o cadastro de usuários, criação, edição, exclusão e marcação de tarefas como concluídas, além de oferecer funcionalidades de filtragem, organização e notificações.
 
-🚀 Tecnologias Utilizadas
+## 🚀 Tecnologias Utilizadas
 
-Backend: Java com Spring Boot
+- **Criação de Wireframes**: Figma
+- **Ferramentas de Implantação**: Docker + Kubernetes
+- **Monitoramento**: Prometheus e Grafana
+- **Linguagem de Programação**: Java com Spring Framework
+- **Banco de Dados**: MySQL
+- **Frontend**: React
+- **Design Responsivo**: Bootstrap
 
-Frontend: React + Bootstrap
-
-Banco de Dados: MySQL
-
-Containerização e Implantação: Docker + Kubernetes
-
-Monitoramento: Prometheus e Grafana
-
-Criação de Wireframes: Figma
-
-🛠 Funcionalidades Principais
+## 🛠 Principais Funcionalidades
 
 📌 Cadastro e autenticação de usuários
 
@@ -32,58 +28,33 @@ Criação de Wireframes: Figma
 
 🏗 Como Rodar o Projeto Localmente
 
-Pré-requisitos
+## Como Executar o Projeto
 
-Antes de começar, certifique-se de ter instalado:
+### Pré-requisitos
 
-Docker
+- Docker
+- Kubernetes
+- Java JDK 11 ou superior
+- Node.js (para o frontend React)
+- MySQL
 
-Java 17+
+## 🔧 Instalação
 
-Node.js 18+
-
-MySQL
-
-Instalação
-
-Clone o repositório:
-
-git clone https://github.com/seu-usuario/sistema-gerenciamento-tarefas.git
+**1. Clone o repositório:**
+   ```
+   git clone https://github.com/seu-usuario/sistema-gerenciamento-tarefas.git
+   ```
+**2. Navegue até o diretório do projeto:**
+   
+```
 cd sistema-gerenciamento-tarefas
+```
+    
+**3. Configuração do Banco de Dados:**
 
-Configure o banco de dados MySQL:
+-  
+-
 
-CREATE DATABASE tarefas_db;
+**4. Executando o Backend (Spring Boot):**
 
-Configure as variáveis de ambiente (.env ou application.properties).
-
-Execute o backend:
-
-cd backend
-./mvnw spring-boot:run
-
-Execute o frontend:
-
-cd frontend
-npm install
-npm start
-
-O sistema estará disponível em http://localhost:3000.
-
-📖 Documentação
-
-Para mais detalhes sobre os requisitos funcionais, regras de negócio e fluxos do sistema, consulte a pasta docs/ (a ser criada).
-
-🤝 Contribuição
-
-Se deseja contribuir com o projeto:
-
-Faça um fork do repositório
-
-Crie uma branch para sua feature (git checkout -b minha-feature)
-
-Commit suas alterações (git commit -m 'Minha nova feature')
-
-Faça um push para a branch (git push origin minha-feature)
-
-Abra um Pull Request
+##  🤝 Contribuição
