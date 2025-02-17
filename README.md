@@ -6,13 +6,15 @@ Este projeto é um sistema de gerenciamento de tarefas desenvolvido para ajudar 
 
 ## 🚀 Tecnologias Utilizadas
 
-- **Criação de Wireframes**: Figma
-- **Ferramentas de Implantação**: Docker + Kubernetes
-- **Monitoramento**: Prometheus e Grafana
-- **Linguagem de Programação**: Java com Spring Framework
-- **Banco de Dados**: MySQL
-- **Frontend**: React
-- **Design Responsivo**: Bootstrap
+| **Área**                  | **Tecnologias**                                                                                                                                         |
+|---------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Criação de Wireframes**  | ![Figma](https://img.shields.io/badge/-Figma-F24E1E?style=flat&logo=figma&logoColor=white)                                                               |
+| **Ferramentas de Implantação** | ![Docker](https://img.shields.io/badge/-Docker-2496ED?style=flat&logo=docker&logoColor=white) + ![Portainer](https://img.shields.io/badge/-Portainer-25B6C6?style=flat&logo=portainer&logoColor=white) |
+| **Monitoramento**          | ![Prometheus](https://img.shields.io/badge/-Prometheus-E6522C?style=flat&logo=prometheus&logoColor=white) + ![Grafana](https://img.shields.io/badge/-Grafana-F46800?style=flat&logo=grafana&logoColor=white) |
+| **Linguagem de Programação** | ![Java](https://img.shields.io/badge/-Java-007396?style=flat&logo=java&logoColor=white) + ![Spring Framework](https://img.shields.io/badge/-Spring%20Framework-6DB33F?style=flat&logo=spring&logoColor=white) |
+| **Banco de Dados**         | ![MySQL](https://img.shields.io/badge/-MySQL-4479A1?style=flat&logo=mysql&logoColor=white)                                                              |
+| **Frontend**               | ![React](https://img.shields.io/badge/-React-61DAFB?style=flat&logo=react&logoColor=black)                                                              |
+| **Design Responsivo**      | ![Bootstrap](https://img.shields.io/badge/-Bootstrap-563D7C?style=flat&logo=bootstrap&logoColor=white)                                                   |
 
 ## 🛠 Principais Funcionalidades
 
@@ -32,29 +34,19 @@ Este projeto é um sistema de gerenciamento de tarefas desenvolvido para ajudar 
 
 ### Pré-requisitos
 
-- Docker
-- Kubernetes
-- Java JDK 11 ou superior
-- Node.js (para o frontend React)
-- MySQL
+![Docker](https://img.shields.io/badge/-Docker-2496ED?style=flat&logo=docker&logoColor=white) 
+![Portainer](https://img.shields.io/badge/-Portainer-25B6C6?style=flat&logo=portainer&logoColor=white)
+![Java](https://img.shields.io/badge/-Java-007396?style=flat&logo=java&logoColor=white) 
+![Node.js](https://img.shields.io/badge/-Node.js-339933?style=flat&logo=node.js&logoColor=white) 
+![MySQL](https://img.shields.io/badge/-MySQL-4479A1?style=flat&logo=mysql&logoColor=white)
 
 ## 🔧 Instalação
 
 **1. Clone o repositório:**
-   ```
-   git clone https://github.com/seu-usuario/sistema-gerenciamento-tarefas.git
-   ```
-**2. Navegue até o diretório do projeto:**
-   
-```
-cd sistema-gerenciamento-tarefas
-```
-    
-**3. Configuração do Banco de Dados:**
+# 🤝 Contribuidores
 
--  
--
-
-**4. Executando o Backend (Spring Boot):**
-
-##  🤝 Contribuição
+- [**Gabriel Augusto da Silva Santos**](https://github.com/Uzi-dv) - Configurações do Ambiente
+- [**Emerson Gabriel Souza Sacramento**](https://github.com/GabrielSacrament) - Configurações do Ambiente
+- [**Gabriel Lucas de Almeida Costa Sousa**](https://github.com/Gabriel-Lucas13) - desenvolvimento
+- [**Vanessa Lorrany Oliveira Soares**](https://github.com/nessaoliv) - desenvolvimento
+- [**João Paulo Correia dos Santos**](https://github.com/nessaoliv) - desenvolvimento
