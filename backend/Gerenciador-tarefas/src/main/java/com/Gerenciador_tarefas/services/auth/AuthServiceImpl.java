@@ -18,10 +18,6 @@ public class AuthServiceImpl implements AuthService {
     
     private final UserRepository userRepository;
 
-    public AuthServiceImpl(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
-
     @PostConstruct
     public void createAnAdminAccount() {
         Optional<User> optionalUser = userRepository.findByUserRole(UserRole.ADMIN);
