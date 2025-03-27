@@ -1,5 +1,7 @@
 package com.Gerenciador_tarefas.controller.admin;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -55,5 +57,10 @@ public class AdminController {
         TaskDTO updateTask = adminService.updateTask(id, taskDTO);
         if(updateTask == null) return ResponseEntity.notFound().build();
         return ResponseEntity.ok(updateTask); 
+    }
+
+    @GetMapping("/tasks/search/{title}")
+    public ResponseEntity<List<TaskDTO>> searchTask(@PathVariable String title) {
+        return ResponseEntity.ok(adminService.searchTaskByTitle(title));
     }
 }
