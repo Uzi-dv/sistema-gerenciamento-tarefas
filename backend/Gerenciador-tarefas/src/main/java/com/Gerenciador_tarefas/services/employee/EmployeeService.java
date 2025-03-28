@@ -6,4 +6,6 @@ import com.Gerenciador_tarefas.dto.TaskDTO;
 public interface EmployeeService {
     
     List<TaskDTO> getTasksByUserId();
+
+    TaskDTO updateTask(Long id, String status);
 }
