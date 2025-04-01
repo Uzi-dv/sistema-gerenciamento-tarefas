@@ -1,6 +1,5 @@
 package com.Gerenciador_tarefas.enums;
 // funçoes do usuario
-public enum UserRole {
-
-    ADMIN, EMPLOYEE;
+public enum UserRole { 
+    EMPLOYEE;
 }

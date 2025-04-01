@@ -12,6 +12,6 @@ public interface UserRepository extends JpaRepository<User,Long> {
 
     Optional<User> findFristByEmail(String username);
 
-    Optional<User> findByUserRole(UserRole admin);
+    Optional<User> findByUserRole(UserRole employee);
     
 }
