@@ -1,0 +1,20 @@
+.addTaskContainer {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .addTaskButton {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .addTaskButton:hover {
+    background-color: #0056b3;
+  }
+  

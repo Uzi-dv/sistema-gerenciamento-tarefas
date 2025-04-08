@@ -1,0 +1,155 @@
+/* Estilos do modal */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.modalContent {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 1rem;
+  max-width: 500px;
+  width: 100%;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  text-align: center;
+}
+
+.modalMessage,
+.confirmMessage {
+  font-size: 1.1rem;
+  margin: 1rem 0;
+  color: #333;
+  text-align: center;
+}
+
+.modalButtons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.modalButton {
+  min-width: 120px;
+  padding: 0.75rem 1.25rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.confirm {
+  background-color: #4caf50;
+}
+
+.confirm:hover {
+  background-color: #388e3c;
+  transform: scale(1.05);
+}
+
+.cancel {
+  background-color: #f44336;
+}
+
+.cancel:hover {
+  background-color: #aa1515;
+  transform: scale(1.05);
+}
+
+/* Botões de ação fora do modal */
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.actionButton {
+  padding: 0.75rem 1.25rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  color: white;
+  transition: 0.3s ease;
+}
+
+.completeButton {
+  background-color: #4caf50;
+}
+
+.completeButton:hover {
+  background-color: #3e8e41;
+  transform: scale(1.05);
+}
+
+.editButton {
+  background-color: #2196f3;
+}
+
+.editButton:hover {
+  background-color: #1976d2;
+  transform: scale(1.05);
+}
+
+.removeButton {
+  background-color: #f44336;
+}
+
+.removeButton:hover {
+  background-color: #d32f2f;
+  transform: scale(1.05);
+}
+
+/* Informações da tarefa */
+.taskTitle {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.completed {
+  text-decoration: line-through;
+  color: #888;
+}
+
+.taskDescription,
+.taskStatus,
+.taskDueDate {
+  font-size: 1rem;
+  margin-top: 0.5rem;
+  color: #444;
+}
+
+/* Modo de edição */
+.editFields input,
+.editFields label {
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}

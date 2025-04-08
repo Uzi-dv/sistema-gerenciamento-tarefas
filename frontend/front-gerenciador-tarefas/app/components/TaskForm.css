@@ -1,0 +1,64 @@
+.task-form-modern {
+    background: #fff;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .form-group-modern {
+    margin-bottom: 20px;
+  }
+  
+  .form-control-modern {
+    width: 100%;
+    padding: 14px 16px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+  }
+  
+  .form-control-modern:focus {
+    border-color: #ff4c4c;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(255, 76, 76, 0.2);
+  }
+  
+  textarea.form-control-modern {
+    min-height: 100px;
+    resize: vertical;
+  }
+  
+  .btn-modern {
+    background-color: #ff4c4c;
+    color: #fff;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    width: 100%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-modern:hover {
+    background-color: #d73838;
+  }
+  
+  @media (max-width: 480px) {
+    .task-form-modern {
+      padding: 16px;
+    }
+  
+    .form-control-modern {
+      font-size: 14px;
+    }
+  
+    .btn-modern {
+      font-size: 15px;
+    }
+  }
+  
