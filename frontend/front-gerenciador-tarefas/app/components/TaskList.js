@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import React, { useState } from "react";
 import TaskItem from "./TaskItem";
 import styles from "./TaskList.module.css";
 
@@ -29,11 +29,11 @@ export default function TaskList({ tasks = [], removeTask, editTask, toggleCompl
 
           <div className={styles.filters}>
             <div className={styles.filterGroup}>
-              <label htmlFor="filter">Filtrar:</label>
+              <label htmlFor="filter" className={styles.label}>Filtrar:</label>
               <select
                 id="filter"
-                onChange={(e) => setFiltro(e.target.value)}
                 value={filtro}
+                onChange={(e) => setFiltro(e.target.value)}
                 className={styles.select}
               >
                 <option value="todas">Todas</option>
@@ -43,11 +43,11 @@ export default function TaskList({ tasks = [], removeTask, editTask, toggleCompl
             </div>
 
             <div className={styles.filterGroup}>
-              <label htmlFor="sort">Ordenar por:</label>
+              <label htmlFor="sort" className={styles.label}>Ordenar por:</label>
               <select
                 id="sort"
-                onChange={(e) => setOrdenacao(e.target.value)}
                 value={ordenacao}
+                onChange={(e) => setOrdenacao(e.target.value)}
                 className={styles.select}
               >
                 <option value="data">Data de conclusão</option>
@@ -57,9 +57,9 @@ export default function TaskList({ tasks = [], removeTask, editTask, toggleCompl
           </div>
         </header>
 
-        <ul className={styles.taskList}>
-          {tarefasFiltradasEOrdenadas.length > 0 ? (
-            tarefasFiltradasEOrdenadas.map((task) => (
+        {tarefasFiltradasEOrdenadas.length > 0 ? (
+          <ul className={styles.taskList}>
+            {tarefasFiltradasEOrdenadas.map((task) => (
               <li key={task.id} className={styles.taskListItem}>
                 <TaskItem
                   task={task}
@@ -70,11 +70,11 @@ export default function TaskList({ tasks = [], removeTask, editTask, toggleCompl
                   toggleCompletion={() => toggleCompletion(task.id)}
                 />
               </li>
-            ))
-          ) : (
-            <p className={styles.noTasks}>Nenhuma tarefa encontrada.</p>
-          )}
-        </ul>
+            ))}
+          </ul>
+        ) : (
+          <p className={styles.noTasks}>Nenhuma tarefa encontrada.</p>
+        )}
       </div>
     </section>
   );

@@ -12,6 +12,12 @@ export default function TaskItem({ task, removeTask, editTask, toggleCompletion 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [actionType, setActionType] = useState("");
 
+  useEffect(() => {
+    setNewText(task.text || "");
+    setNewDescription(task.description || "");
+    setNewDueDate(task.dueDate || "");
+  }, [task]);
+
   const handleToggleCompletion = () => {
     setActionType(task.completed ? "desfazer" : "concluir");
     setIsModalOpen(true);
@@ -37,33 +43,31 @@ export default function TaskItem({ task, removeTask, editTask, toggleCompletion 
     setIsModalOpen(false);
   };
 
-  useEffect(() => {
-    setNewText(task.text || "");
-    setNewDescription(task.description || "");
-    setNewDueDate(task.dueDate || "");
-  }, [task]);
-
   return (
-    <div className={`card mb-3 p-3 ${styles.taskContainer}`}>
+    <div className={`card shadow-sm mb-4 p-3 rounded-4 ${styles.taskContainer}`}>
       {!isEditing ? (
         <>
-          <h4 className={`card-title ${task.completed ? styles.completed : ""}`}>
+          <h5 className={`fw-bold ${task.completed ? styles.completed : ""}`}>
             {task.text}
-          </h4>
+          </h5>
+
           {task.description && (
-            <p className="card-text text-muted">{task.description}</p>
+            <p className="text-muted mb-1">{task.description}</p>
           )}
-          <p className={styles.taskStatus}>
+
+          <p className="mb-1">
             <strong>Status:</strong> {task.completed ? "Concluída" : "Pendente"}
           </p>
+
           {task.dueDate && (
-            <p className={styles.taskDueDate}>
-              <strong>Data de conclusão:</strong> {new Date(task.dueDate).toLocaleString()}
+            <p className="mb-1">
+              <strong>Data de conclusão:</strong>{" "}
+              {new Date(task.dueDate).toLocaleString()}
             </p>
           )}
         </>
       ) : (
-        <div className={styles.editFields}>
+        <div>
           <input
             type="text"
             value={newText}
@@ -91,11 +95,15 @@ export default function TaskItem({ task, removeTask, editTask, toggleCompletion 
         </div>
       )}
 
-      <div className={`d-flex justify-content-center gap-2 mt-3 ${styles.buttonGroup}`}>
+      <div className="d-flex justify-content-center gap-2 mt-3 flex-wrap">
         <button className="btn btn-success" onClick={handleToggleCompletion}>
           {task.completed ? "Desfazer" : "Concluir"}
         </button>
-        <button className="btn btn-warning" onClick={handleEdit} disabled={isEditing && newText.trim() === ""}>
+        <button
+          className="btn btn-warning"
+          onClick={handleEdit}
+          disabled={isEditing && newText.trim() === ""}
+        >
           {isEditing ? "Salvar" : "Editar"}
         </button>
         <button className="btn btn-danger" onClick={handleRemove}>

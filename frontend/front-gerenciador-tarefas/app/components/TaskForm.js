@@ -15,14 +15,12 @@ export default function TaskForm({ addTask }) {
       return;
     }
 
-    // Validação opcional de data futura
     if (dueDate && new Date(dueDate) < new Date()) {
       const confirmar = confirm("A data/hora de conclusão já passou. Deseja continuar?");
       if (!confirmar) return;
     }
 
     const novaTarefa = {
-      id: Date.now(), // ID único baseado no timestamp atual
       text: text.trim(),
       description: description.trim(),
       dueDate,

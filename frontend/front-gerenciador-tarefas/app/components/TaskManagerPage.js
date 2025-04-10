@@ -1,53 +1,100 @@
 "use client";
-import { useState } from "react";
-import AddTask from "./AddTask"; // ✅ novo componente
-import TaskList from "./TaskList";
+import { useState, useEffect } from "react";
+import TaskForm from "../../components/TaskForm";
+import TaskList from "../../components/TaskList";
+import { useRouter } from "next/navigation";
+import {
+  buscarTarefas,
+  criarTarefa,
+  atualizarTarefa,
+  deletarTarefa,
+} from "../../../services/taskService";
 
-export default function TaskManagerPage() {
+export default function TarefasPage() {
   const [tasks, setTasks] = useState([]);
+  const router = useRouter();
 
-  const addTask = (text, description, dueDate) => {
-    const newTask = {
-      text,
-      description,
-      dueDate,
-      completed: false,
+  useEffect(() => {
+    const carregarTarefas = async () => {
+      try {
+        const response = await buscarTarefas();
+        setTasks(response.data);
+      } catch (error) {
+        console.error("Erro ao buscar tarefas:", error);
+      }
     };
-    setTasks((prev) => [...prev, newTask]);
+
+    carregarTarefas();
+  }, []);
+
+  const addTask = async (task) => {
+    try {
+      const response = await criarTarefa(task);
+      setTasks([...tasks, response.data]);
+    } catch (error) {
+      console.error("Erro ao adicionar tarefa:", error);
+    }
   };
 
-  const removeTask = (index) => {
-    const updated = [...tasks];
-    updated.splice(index, 1);
-    setTasks(updated);
+  const removeTask = async (id) => {
+    try {
+      await deletarTarefa(id);
+      setTasks(tasks.filter((task) => task.id !== id));
+    } catch (error) {
+      console.error("Erro ao remover tarefa:", error);
+    }
   };
 
-  const editTask = (index, newText, newDescription, newDueDate) => {
-    const updated = [...tasks];
-    updated[index] = {
-      ...updated[index],
-      text: newText,
-      description: newDescription,
-      dueDate: newDueDate,
-    };
-    setTasks(updated);
+  const editTask = async (id, newText, newDescription, newDueDate) => {
+    try {
+      const tarefaAtualizada = {
+        text: newText,
+        description: newDescription,
+        dueDate: newDueDate,
+      };
+      const response = await atualizarTarefa(id, tarefaAtualizada);
+      setTasks(tasks.map((task) => (task.id === id ? response.data : task)));
+    } catch (error) {
+      console.error("Erro ao editar tarefa:", error);
+    }
   };
 
-  const toggleCompletion = (index) => {
-    const updated = [...tasks];
-    updated[index].completed = !updated[index].completed;
-    setTasks(updated);
+  const toggleCompletion = async (id) => {
+    try {
+      const task = tasks.find((t) => t.id === id);
+      const tarefaAtualizada = { ...task, completed: !task.completed };
+      const response = await atualizarTarefa(id, tarefaAtualizada);
+      setTasks(tasks.map((t) => (t.id === id ? response.data : t)));
+    } catch (error) {
+      console.error("Erro ao alternar conclusão:", error);
+    }
+  };
+
+  const handleLogout = () => {
+    router.push("/login");
   };
 
   return (
-    <div className="container mt-4 mx-auto" style={{ maxWidth: "700px" }}>
-      <AddTask addTask={addTask} /> {/* ✅ novo botão com modal */}
-      <TaskList
-        tasks={tasks}
-        removeTask={removeTask}
-        editTask={editTask}
-        toggleCompletion={toggleCompletion}
-      />
-    </div>
+    <main className="container mt-4 mb-5 d-flex flex-column align-items-center">
+      <div className="text-center mb-4">
+        <h1 className="text-danger">Gerenciador de Tarefas</h1>
+      </div>
+
+      <div className="w-100" style={{ maxWidth: "800px" }}>
+        <TaskForm addTask={addTask} />
+        <TaskList
+          tasks={tasks}
+          removeTask={removeTask}
+          editTask={editTask}
+          toggleCompletion={toggleCompletion}
+        />
+      </div>
+
+      <div className="text-center mt-5">
+        <button onClick={handleLogout} className="btn btn-secondary">
+          Sair
+        </button>
+      </div>
+    </main>
   );
 }

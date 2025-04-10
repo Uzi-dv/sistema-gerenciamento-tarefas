@@ -1,8 +1,9 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { cadastrar } from "@/services/authServiceSelector"; // ✅ ALTERADO
 
 export default function CadastroForm() {
   const [formData, setFormData] = useState({
@@ -16,6 +17,8 @@ export default function CadastroForm() {
 
   const [errors, setErrors] = useState({});
   const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
   const firstErrorRef = useRef(null);
 
@@ -53,21 +56,31 @@ export default function CadastroForm() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setSuccessMessage("");
+    setErrorMessage("");
 
     if (validate()) {
-      setSuccessMessage("Cadastro realizado com sucesso! ✅");
-      console.log("Dados cadastrados:", formData);
-      setFormData({
-        firstName: "",
-        lastName: "",
-        email: "",
-        gender: "",
-        username: "",
-        password: "",
-      });
+      setLoading(true);
+      try {
+        const nomeCompleto = `${formData.firstName} ${formData.lastName}`;
+        await cadastrar(nomeCompleto, formData.email, formData.password);
+
+        setSuccessMessage("Cadastro realizado com sucesso! ✅");
+        setFormData({
+          firstName: "",
+          lastName: "",
+          email: "",
+          gender: "",
+          username: "",
+          password: "",
+        });
+      } catch (error) {
+        setErrorMessage(error.response?.data?.mensagem || "Erro ao cadastrar. Tente novamente.");
+      } finally {
+        setLoading(false);
+      }
     } else if (firstErrorRef.current) {
       document.getElementsByName(firstErrorRef.current)[0].focus();
     }
@@ -156,11 +169,12 @@ export default function CadastroForm() {
           </small>
         </div>
 
-        <button type="submit" className="btn btn-danger w-100">
-          Cadastrar
+        <button type="submit" className="btn btn-danger w-100" disabled={loading}>
+          {loading ? "Cadastrando..." : "Cadastrar"}
         </button>
 
         {successMessage && <div className="alert alert-success mt-3">{successMessage}</div>}
+        {errorMessage && <div className="alert alert-danger mt-3">{errorMessage}</div>}
 
         <button type="button" className="btn btn-secondary w-100 mt-2" onClick={() => router.back()}>
           ← Voltar

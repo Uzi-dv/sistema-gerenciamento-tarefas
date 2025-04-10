@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import ForgotPassword from './ForgotPassword';
+import { login } from '@/services/authServiceSelector'; // ✅ usando selector
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -11,6 +12,7 @@ export default function LoginPage() {
   const [erro, setErro] = useState("");
   const [showForgotPassword, setShowForgotPassword] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const router = useRouter();
 
@@ -21,7 +23,7 @@ export default function LoginPage() {
     setShowForgotPassword(false);
   }, []);
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     setErro("");
 
@@ -30,10 +32,24 @@ export default function LoginPage() {
       return;
     }
 
-    if (email === "usuario@email.com" && senha === "123456") {
+    try {
+      setLoading(true);
+      const response = await login(email, senha);
+      const { token } = response.data;
+
+      // Salva o token (opcional - para futuras autenticações)
+      localStorage.setItem("token", token);
+
+      // Redireciona para a página de tarefas
       router.push('/tarefas');
-    } else {
-      setErro("E-mail ou senha inválidos.");
+    } catch (error) {
+      if (error.response?.status === 401) {
+        setErro("E-mail ou senha inválidos.");
+      } else {
+        setErro("Erro ao tentar fazer login. Tente novamente.");
+      }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -82,8 +98,8 @@ export default function LoginPage() {
                   </button>
                 </div>
               </div>
-              <button type="submit" className="btn btn-danger w-100">
-                Entrar
+              <button type="submit" className="btn btn-danger w-100" disabled={loading}>
+                {loading ? "Entrando..." : "Entrar"}
               </button>
             </form>
 

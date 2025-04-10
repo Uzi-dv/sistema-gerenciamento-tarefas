@@ -4,48 +4,72 @@ import TaskForm from "../components/TaskForm";
 import TaskList from "../components/TaskList";
 import { useRouter } from "next/navigation";
 
+import {
+  buscarTarefas,
+  criarTarefa,
+  atualizarTarefa,
+  deletarTarefa,
+} from "../../services/taskServiceSelector";
+
 export default function TarefasPage() {
   const [tasks, setTasks] = useState([]);
   const router = useRouter();
 
   useEffect(() => {
-    try {
-      const savedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
-      if (Array.isArray(savedTasks)) {
-        setTasks(savedTasks);
-      } else {
-        setTasks([]);
+    const carregarTarefas = async () => {
+      try {
+        const response = await buscarTarefas();
+        setTasks(response.data || response); // funciona para mock e backend real
+      } catch (error) {
+        console.error("Erro ao buscar tarefas:", error);
       }
-    } catch (error) {
-      console.error("Erro ao carregar tarefas do localStorage:", error);
-      setTasks([]);
-    }
+    };
+
+    carregarTarefas();
   }, []);
 
-  useEffect(() => {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-  }, [tasks]);
+  const addTask = async (task) => {
+    try {
+      const response = await criarTarefa(task);
+      setTasks([...tasks, response.data || task]);
+    } catch (error) {
+      console.error("Erro ao adicionar tarefa:", error);
+    }
+  };
 
-  const addTask = (task) => setTasks([...tasks, task]);
+  const removeTask = async (id) => {
+    try {
+      await deletarTarefa(id);
+      setTasks(tasks.filter((task) => task.id !== id));
+    } catch (error) {
+      console.error("Erro ao remover tarefa:", error);
+    }
+  };
 
-  const removeTask = (id) =>
-    setTasks(tasks.filter((task) => task.id !== id));
+  const editTask = async (id, newText, newDescription, newDueDate) => {
+    try {
+      const tarefaAtualizada = {
+        text: newText,
+        description: newDescription,
+        dueDate: newDueDate,
+      };
+      const response = await atualizarTarefa(id, tarefaAtualizada);
+      setTasks(tasks.map((task) => (task.id === id ? response.data || tarefaAtualizada : task)));
+    } catch (error) {
+      console.error("Erro ao editar tarefa:", error);
+    }
+  };
 
-  const editTask = (id, newText, newDescription, newDueDate) =>
-    setTasks(
-      tasks.map((task) =>
-        task.id === id
-          ? { ...task, text: newText, description: newDescription, dueDate: newDueDate }
-          : task
-      )
-    );
-
-  const toggleCompletion = (id) =>
-    setTasks(
-      tasks.map((task) =>
-        task.id === id ? { ...task, completed: !task.completed } : task
-      )
-    );
+  const toggleCompletion = async (id) => {
+    try {
+      const task = tasks.find((t) => t.id === id);
+      const tarefaAtualizada = { ...task, completed: !task.completed };
+      const response = await atualizarTarefa(id, tarefaAtualizada);
+      setTasks(tasks.map((t) => (t.id === id ? response.data || tarefaAtualizada : t)));
+    } catch (error) {
+      console.error("Erro ao alternar conclusão:", error);
+    }
+  };
 
   const handleLogout = () => {
     router.push("/login");
@@ -57,7 +81,6 @@ export default function TarefasPage() {
         <h1 className="text-danger">Gerenciador de Tarefas</h1>
       </div>
 
-      {/* Container único com mesma largura para formulário e lista */}
       <div className="w-100" style={{ maxWidth: "800px" }}>
         <TaskForm addTask={addTask} />
         <TaskList
