@@ -43,7 +43,13 @@ Este projeto é um sistema de gerenciamento de tarefas desenvolvido para ajudar 
 ```
 git clone https://github.com/Uzi-dv/sistema-gerenciamento-tarefas.git
 ```
+Antes de iniciar, verifique se você tem as seguintes ferramentas instaladas:
 
+- Java 17
+- Node.js
+- MySQL
+- Docker (opcional)
+- Maven
 
 # 🤝 Contribuidores
 
