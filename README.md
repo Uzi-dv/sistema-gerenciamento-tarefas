@@ -40,9 +40,9 @@ Este projeto é um sistema de gerenciamento de tarefas desenvolvido para ajudar 
 ## 🔧 Instalação
 
 **1. Clone o repositório:**  
-```
-git clone https://github.com/Uzi-dv/sistema-gerenciamento-tarefas.git
-```
+  ```
+  git clone https://github.com/Uzi-dv/sistema-gerenciamento-tarefas.git
+  ```
 Antes de iniciar, verifique se você tem as seguintes ferramentas instaladas:
 
 - Java 17
@@ -50,7 +50,19 @@ Antes de iniciar, verifique se você tem as seguintes ferramentas instaladas:
 - MySQL
 - Docker (opcional)
 - Maven
+🖥️ Backend (Spring Boot)
+Acesse a pasta do backend:
+  ```
+  cd backend
+  ```
+Configure o banco de dados no arquivo src/main/resources/application.properties:
 
+  ```
+  spring.datasource.url=jdbc:mysql://localhost:3306/sistema_tarefas
+  spring.datasource.username=SEU_USUARIO
+  spring.datasource.password=SUA_SENHA
+  ```
+Crie o banco de dados no MySQL
 # 🤝 Contribuidores
 
 - [**Gabriel Augusto da Silva Santos**](https://github.com/Uzi-dv) - Configurações do Ambiente
