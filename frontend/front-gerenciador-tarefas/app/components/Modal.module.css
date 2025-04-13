@@ -38,7 +38,7 @@
 
 .buttonContainer {
   display: flex;
-  justify-content: space-between;
+  justify-content: center; /* Centraliza os botões */
   gap: 1rem;
   margin-top: 1.5rem;
   flex-wrap: wrap;
@@ -54,6 +54,7 @@
   cursor: pointer;
   font-weight: 600;
   transition: background-color 0.3s ease, transform 0.2s ease;
+  max-width: 150px; /* Limita o tamanho para melhor alinhamento */
 }
 
 .addButton {

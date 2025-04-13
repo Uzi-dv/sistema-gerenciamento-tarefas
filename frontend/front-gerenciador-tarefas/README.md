@@ -1,3 +1,21 @@
+> ⚠️ **Atenção: Alternância entre Modo Mock e Modo Real**
+>
+> Este projeto possui dois modos de funcionamento:
+>
+> - **Modo Mock:** utiliza `localStorage` para simular o backend (ideal para testes rápidos e desenvolvimento local).
+> - **Modo Real:** conecta-se ao backend real via API.
+>
+> Para alternar entre os modos, edite o arquivo `.env.local` na raiz do projeto:
+>
+> ```env
+> NEXT_PUBLIC_USE_MOCK=true   # Para usar o modo Mock
+> NEXT_PUBLIC_USE_MOCK=false  # Para usar o modo Real
+> ```
+>
+> ⚠️ Certifique-se de **reiniciar o servidor de desenvolvimento** após alterar este valor para que a mudança tenha efeito.
+>
+> ---
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started

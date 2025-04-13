@@ -52,7 +52,9 @@ export default function TaskItem({ task, removeTask, editTask, toggleCompletion 
           </h5>
 
           {task.description && (
-            <p className="text-muted mb-1">{task.description}</p>
+            <p className={`text-muted mb-1 ${task.completed ? styles.completed : ""}`}>
+              {task.description}
+            </p>
           )}
 
           <p className="mb-1">

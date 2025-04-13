@@ -1,22 +1,7 @@
-// services/taskService.js
-import api from "./api";
+const useMock = process.env.NEXT_PUBLIC_USE_MOCK === "true";
 
-// Buscar todas as tarefas
-export const buscarTarefas = () => {
-  return api.get("/tarefas");
-};
+const service = useMock
+  ? require("./taskService.mock")
+  : require("./taskService.real"); 
 
-// Criar uma nova tarefa
-export const criarTarefa = (tarefa) => {
-  return api.post("/tarefas", tarefa);
-};
-
-// Atualizar uma tarefa existente
-export const atualizarTarefa = (id, tarefaAtualizada) => {
-  return api.put(`/tarefas/${id}`, tarefaAtualizada);
-};
-
-// Deletar uma tarefa
-export const deletarTarefa = (id) => {
-  return api.delete(`/tarefas/${id}`);
-};
+module.exports = service;

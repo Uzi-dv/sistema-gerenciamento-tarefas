@@ -2,6 +2,8 @@
 import "bootstrap/dist/css/bootstrap.min.css"; // Bootstrap primeiro
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css"; // Depois os estilos globais
+import { ModoProvider } from "./context/ModoContext"; // Importa o contexto
+import ToggleModoButton from "./components/ToggleModoButton"; // Importa o botão de alternância
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,7 +31,13 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
+        <ModoProvider>
+          {/* Botão de alternância visível no topo de todas as páginas */}
+          <div className="container py-3 d-flex justify-content-end">
+            <ToggleModoButton />
+          </div>
+          {children}
+        </ModoProvider>
       </body>
     </html>
   );
